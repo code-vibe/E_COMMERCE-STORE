@@ -1,4 +1,5 @@
 ﻿using API.Entities;
+using Microsoft.Extensions.Configuration
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -13,11 +14,13 @@ namespace API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // base.OnConfiguring(optionsBuilder);
             var configuration = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json")
-                 .Build;
+                 .Build();
+
+            var connectionString = configuration.GetConnectionString("AppDb");
+           optionsBuilder.UseSqlite(connectionString);
         }
     }
 }
