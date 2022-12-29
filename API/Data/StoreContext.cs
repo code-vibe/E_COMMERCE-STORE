@@ -1,5 +1,4 @@
 ﻿using API.Entities;
-using Microsoft.Extensions.Configuration
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
